@@ -43,10 +43,10 @@
 //		Logs are written to standard error instead of to files.
 //	-alsologtostderr=false
 //		Logs are written to standard error as well as to files.
-//	-stderrthreshold=ERROR
+//	-stderrthreshold=INFO
 //		Log events at or above this severity are logged to standard
 //		error as well as to files.
-//	-log_dir=""
+//	-logdir=""
 //		Log files will be written to this directory instead of the
 //		default temporary directory.
 //
@@ -394,13 +394,13 @@ type flushSyncWriter interface {
 func init() {
 	flag.BoolVar(&logging.toStderr, "logtostderr", false, "log to standard error instead of files")
 	flag.BoolVar(&logging.alsoToStderr, "alsologtostderr", false, "log to standard error as well as files")
-	flag.Var(&logging.verbosity, "v", "log level for V logs")
 	flag.Var(&logging.stderrThreshold, "stderrthreshold", "logs at or above this threshold go to stderr")
-	flag.Var(&logging.vmodule, "vmodule", "comma-separated list of pattern=N settings for file-filtered logging")
-	flag.Var(&logging.traceLocation, "log_backtrace_at", "when logging hits line file:N, emit a stack trace")
+	//flag.Var(&logging.verbosity, "v", "log level for V logs")
+	//flag.Var(&logging.vmodule, "vmodule", "comma-separated list of pattern=N settings for file-filtered logging")
+	//flag.Var(&logging.traceLocation, "log_backtrace_at", "when logging hits line file:N, emit a stack trace")
 
-	// Default stderrThreshold is ERROR.
-	logging.stderrThreshold = errorLog
+	// Default stderrThreshold is INFO.
+	logging.stderrThreshold = infoLog
 
 	logging.setVState(0, nil, false)
 	go logging.flushDaemon()
